@@ -1,4 +1,5 @@
 using Bills_System_API.Models;
+using Bills_System_API.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -48,6 +49,14 @@ namespace Bills_System_API
                     builder.AllowAnyHeader();
                 });
             });
+
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<IUnitRepository, UnitRepository>();
+            services.AddScoped<ITypeRepository, TypeRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddScoped<ICompanyTypeRepository, CompanyTypeRepository>();
+            services.AddScoped<IInvoiceRepository, InvoiceRepository>();
+            services.AddScoped<IClientRepository, ClientRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +69,8 @@ namespace Bills_System_API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Bills_System_API v1"));
             }
 
+            app.UseCors(MyAllowSpecificOrigins);
+            
             app.UseRouting();
 
             app.UseAuthorization();
@@ -69,7 +80,6 @@ namespace Bills_System_API
                 endpoints.MapControllers();
             });
 
-            app.UseCors(MyAllowSpecificOrigins);
 
         }
     }

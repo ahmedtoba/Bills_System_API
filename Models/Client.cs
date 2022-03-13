@@ -17,8 +17,6 @@ namespace Bills_System_API.Models
         public string PhoneNumber { get; set; }
         [Required(ErrorMessage ="Address is required")]
         public string Address { get; set; }
-        public double TotalBills { get; set; }
-        public double PaidUp { get; set; }
         public virtual List<Invoice> Invoice { get; set; }
 
 

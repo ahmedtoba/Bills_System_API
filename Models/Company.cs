@@ -7,6 +7,7 @@ namespace Bills_System_API.Models
     [Index(nameof(Name), IsUnique =true, Name ="UniqueName")]
     public class Company
     {
+        [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "Company name is required")]
         public string Name { get; set; }

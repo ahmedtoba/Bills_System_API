@@ -20,6 +20,7 @@ namespace Bills_System_API.Models
         {
             modelBuilder.Entity<CompanyType>()
                     .HasIndex(c => new {c.CompanyId, c.TypeId}).IsUnique();
+            
         }
 
 
