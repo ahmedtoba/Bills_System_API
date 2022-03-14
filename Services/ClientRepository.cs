@@ -28,13 +28,15 @@ namespace Bills_System_API.Services
             return db.Clients.FirstOrDefault(c => c.Name == name);
         }
 
-        public void Insert(Client Client)
+        public void Insert(Client client)
         {
             if (!db.Clients.Any())
-                Client.Id = 1000;
-            Client.Id = db.Clients.Max(c => c.Id) + 1;
-
-            db.Clients.Add(Client);
+                client.Id = 1000;
+            else
+            {
+                client.Id = db.Clients.Max(c => c.Id) + 1;
+            }
+            db.Clients.Add(client);
             db.SaveChanges();
         }
     }
