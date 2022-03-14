@@ -13,22 +13,22 @@ namespace Bills_System_API.Services
             this.db = db;
         }
 
-        public List<Type> GetAll()
+        public List<Species> GetAll()
         {
             return db.Types.ToList();
         }
 
-        public Type GetById(int id)
+        public Species GetById(int id)
         {
             return db.Types.FirstOrDefault(c => c.Id == id);
         }
 
-        public Type GetByName(string name)
+        public Species GetByName(string name)
         {
             return db.Types.FirstOrDefault(c => c.Name == name);
         }
 
-        public void Insert(Type type)
+        public void Insert(Species type)
         {
             db.Types.Add(type);
             db.SaveChanges();

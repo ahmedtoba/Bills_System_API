@@ -12,46 +12,46 @@ namespace Bills_System_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyController : ControllerBase
+    public class TypeController : ControllerBase
     {
-        private readonly ICompanyRepository companyRepository;
+        private readonly ITypeRepository typeRepository;
 
-        public CompanyController(ICompanyRepository companyRepository)
+        public TypeController(ITypeRepository typeRepository)
         {
-            this.companyRepository = companyRepository;
+            this.typeRepository = typeRepository;
         }
 
-        // GET: api/Company
+        // GET: api/Type
         [HttpGet]
-        public ActionResult<IEnumerable<Company>> GetCompanys()
+        public ActionResult<IEnumerable<Species>> GetTypes()
         {
-            return companyRepository.GetAll();
+            return typeRepository.GetAll();
         }
 
-        // GET: api/Company/5
+        // GET: api/Type/5
         [HttpGet("{id}")]
-        public ActionResult<Company> GetCompany(int id)
+        public ActionResult<Species> GetType(int id)
         {
-            var company = companyRepository.GetById(id);
+            var type = typeRepository.GetById(id);
 
-            if (company == null)
+            if (type == null)
                 return NotFound();
-            return company;
+            return type;
         }
 
         #region put
 
-        // PUT: api/Company/5
+        // PUT: api/Type/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutCompany(int id, Company company)
+        //public async Task<IActionResult> PutType(int id, Type type)
         //{
-        //    if (id != company.Id)
+        //    if (id != type.Id)
         //    {
         //        return BadRequest();
         //    }
 
-        //    _context.Entry(company).State = EntityState.Modified;
+        //    _context.Entry(type).State = EntityState.Modified;
 
         //    try
         //    {
@@ -59,7 +59,7 @@ namespace Bills_System_API.Controllers
         //    }
         //    catch (DbUpdateConcurrencyException)
         //    {
-        //        if (!CompanyExists(id))
+        //        if (!TypeExists(id))
         //        {
         //            return NotFound();
         //        }
@@ -74,39 +74,39 @@ namespace Bills_System_API.Controllers
 
         #endregion
 
-        // POST: api/Company
+        // POST: api/Type
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public ActionResult<Company> PostCompany(Company company)
+        public ActionResult<Type> PostType(Species type)
         {
-            companyRepository.Insert(company);
-            return CreatedAtAction("GetCompany", new {Id = company.Id}, company);
+            typeRepository.Insert(type);
+            return CreatedAtAction("GetType", new {Id = type.Id}, type);
         }
 
 
         #region Delete
-        // DELETE: api/Company/5
+        // DELETE: api/Type/5
         //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteCompany(int id)
+        //public async Task<IActionResult> DeleteType(int id)
         //{
-        //    var company = await _context.Companys.FindAsync(id);
-        //    if (company == null)
+        //    var company = await _context.types.FindAsync(id);
+        //    if (type == null)
         //    {
         //        return NotFound();
         //    }
 
-        //    _context.Companys.Remove(company);
+        //    _context.Types.Remove(type);
         //    await _context.SaveChangesAsync();
 
         //    return NoContent();
         //}
         #endregion
 
-        private bool CompanyExists(int id)
+        private bool TypeExists(int id)
         {
-            var company = companyRepository.GetById(id);
+            var type = typeRepository.GetById(id);
             
-            return (company == null) ? false : true;
+            return (type == null) ? false : true;
         }
     }
 }

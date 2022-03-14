@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Bills_System_API.Models
 {
     [Index(nameof(Name), IsUnique = true, Name = "UniqueName")]
-    public class Type
+    public class Species
     {
         public int Id { get; set; }
         [Required(ErrorMessage ="Type name is required")]

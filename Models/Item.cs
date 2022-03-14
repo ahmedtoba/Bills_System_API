@@ -31,7 +31,7 @@ namespace Bills_System_API.Models
         public int UnitId { get; set; }
         public virtual Company Company { get; set; }
         public virtual Unit Unit { get; set; }
-        public virtual Type Type { get; set; }
+        public virtual Species Type { get; set; }
         public virtual List<Invoice> Invoice { get; set; }
     }
 }

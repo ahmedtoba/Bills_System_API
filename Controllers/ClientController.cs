@@ -12,46 +12,46 @@ namespace Bills_System_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CompanyController : ControllerBase
+    public class ClientController : ControllerBase
     {
-        private readonly ICompanyRepository companyRepository;
+        private readonly IClientRepository clientRepository;
 
-        public CompanyController(ICompanyRepository companyRepository)
+        public ClientController(IClientRepository clientRepository)
         {
-            this.companyRepository = companyRepository;
+            this.clientRepository = clientRepository;
         }
 
-        // GET: api/Company
+        // GET: api/Client
         [HttpGet]
-        public ActionResult<IEnumerable<Company>> GetCompanys()
+        public ActionResult<IEnumerable<Client>> GetClients()
         {
-            return companyRepository.GetAll();
+            return clientRepository.GetAll();
         }
 
-        // GET: api/Company/5
+        // GET: api/Client/5
         [HttpGet("{id}")]
-        public ActionResult<Company> GetCompany(int id)
+        public ActionResult<Client> GetClient(int id)
         {
-            var company = companyRepository.GetById(id);
+            var client = clientRepository.GetById(id);
 
-            if (company == null)
+            if (client == null)
                 return NotFound();
-            return company;
+            return client;
         }
 
         #region put
 
-        // PUT: api/Company/5
+        // PUT: api/Client/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutCompany(int id, Company company)
+        //public async Task<IActionResult> PutClient(int id, Client client)
         //{
-        //    if (id != company.Id)
+        //    if (id != client.Id)
         //    {
         //        return BadRequest();
         //    }
 
-        //    _context.Entry(company).State = EntityState.Modified;
+        //    _context.Entry(client).State = EntityState.Modified;
 
         //    try
         //    {
@@ -59,7 +59,7 @@ namespace Bills_System_API.Controllers
         //    }
         //    catch (DbUpdateConcurrencyException)
         //    {
-        //        if (!CompanyExists(id))
+        //        if (!ClientExists(id))
         //        {
         //            return NotFound();
         //        }
@@ -74,39 +74,39 @@ namespace Bills_System_API.Controllers
 
         #endregion
 
-        // POST: api/Company
+        // POST: api/Client
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public ActionResult<Company> PostCompany(Company company)
+        public ActionResult<Client> PostClient(Client client)
         {
-            companyRepository.Insert(company);
-            return CreatedAtAction("GetCompany", new {Id = company.Id}, company);
+            clientRepository.Insert(client);
+            return CreatedAtAction("GetClient", new {Id = client.Id}, client);
         }
 
 
         #region Delete
-        // DELETE: api/Company/5
+        // DELETE: api/Client/5
         //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteCompany(int id)
+        //public async Task<IActionResult> DeleteClient(int id)
         //{
-        //    var company = await _context.Companys.FindAsync(id);
-        //    if (company == null)
+        //    var client = await _context.Clients.FindAsync(id);
+        //    if (client == null)
         //    {
         //        return NotFound();
         //    }
 
-        //    _context.Companys.Remove(company);
+        //    _context.Clients.Remove(client);
         //    await _context.SaveChangesAsync();
 
         //    return NoContent();
         //}
         #endregion
 
-        private bool CompanyExists(int id)
+        private bool ClientExists(int id)
         {
-            var company = companyRepository.GetById(id);
+            var client = clientRepository.GetById(id);
             
-            return (company == null) ? false : true;
+            return (client == null) ? false : true;
         }
     }
 }

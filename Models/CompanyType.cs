@@ -17,7 +17,7 @@ namespace Bills_System_API.Models
         [ForeignKey("Type")]
         public int TypeId { get; set; }
         public virtual Company Company { get; set; }
-        public virtual Type Type { get; set; }
+        public virtual Species Type { get; set; }
 
     }
 }

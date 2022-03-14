@@ -5,7 +5,7 @@ namespace Bills_System_API.Models
     public class BillsContext: DbContext
     {
         public virtual DbSet<Company> Companys { get; set; }
-        public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<Species> Types { get; set; }
         public virtual DbSet<CompanyType> CompanyTypes  { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Unit> Units { get; set; }

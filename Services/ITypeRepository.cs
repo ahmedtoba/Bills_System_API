@@ -5,9 +5,9 @@ namespace Bills_System_API.Services
 {
     public interface ITypeRepository
     {
-        List<Type> GetAll();
-        Type GetById(int id);
-        Type GetByName(string name);
-        void Insert(Type Type);
+        List<Species> GetAll();
+        Species GetById(int id);
+        Species GetByName(string name);
+        void Insert(Species Type);
     }
 }
