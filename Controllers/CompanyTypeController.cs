@@ -2,6 +2,7 @@
 using Bills_System_API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Bills_System_API.Controllers
 {
@@ -20,7 +21,7 @@ namespace Bills_System_API.Controllers
 
         #region GetAll CompanyType
         [HttpGet]
-        public IActionResult CompanyTypes()
+        public ActionResult<IEnumerable<CompanyType>> GetCompanyTypes()
         {
             var companytype = companytypeRepo.GetAll();
             return Ok(companytype);
@@ -29,7 +30,7 @@ namespace Bills_System_API.Controllers
 
         #region GetById
         [HttpGet("{id}")]
-        public IActionResult companytype(int id)
+        public ActionResult<CompanyType> GetCompanyType(int id)
         {
             var companytype = companytypeRepo.GetById(id);
             if(companytype == null)
@@ -40,10 +41,10 @@ namespace Bills_System_API.Controllers
 
         #region Insert
         [HttpPost]
-        public IActionResult Insert(CompanyType companyType)
+        public ActionResult<CompanyType> PostCompanyType(CompanyType companyType)
         {
             companytypeRepo.Insert(companyType);
-            return CreatedAtAction("companytype", new { Id = companyType.Id }, companyType);
+            return CreatedAtAction("GetCompanyType", new { Id = companyType.Id }, companyType);
         }
         #endregion
 
