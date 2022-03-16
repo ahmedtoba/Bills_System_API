@@ -83,6 +83,11 @@ namespace Bills_System_API.Controllers
             return CreatedAtAction("GetClient", new {Id = client.Id}, client);
         }
 
+        [HttpGet("max")]
+        public ActionResult<int> GetMaximumClientNumber()
+        {
+            return clientRepository.GetAll().Max(c => c.Id) + 1;
+        }
 
         #region Delete
         // DELETE: api/Client/5

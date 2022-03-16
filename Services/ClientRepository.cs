@@ -30,12 +30,6 @@ namespace Bills_System_API.Services
 
         public void Insert(Client client)
         {
-            if (!db.Clients.Any())
-                client.Id = 1000;
-            else
-            {
-                client.Id = db.Clients.Max(c => c.Id) + 1;
-            }
             db.Clients.Add(client);
             db.SaveChanges();
         }
