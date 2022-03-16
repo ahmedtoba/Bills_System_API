@@ -23,6 +23,12 @@ namespace Bills_System_API.Services
             return db.Invoices.FirstOrDefault(c => c.Id == id);
         }
 
+        public List<Invoice> GetByItemId(int itemId)
+        {
+            var invoice = db.Invoices.Where(w => w.ItemId == itemId).ToList();
+            return invoice;
+        }
+
         public void Insert(Invoice Invoice)
         {
             if (!db.Invoices.Any())
