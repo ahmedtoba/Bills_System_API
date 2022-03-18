@@ -13,5 +13,6 @@ namespace Bills_System_API.Models
         public string Name { get; set; }
         public string Notes { get; set; }
         public virtual List<CompanyType> CompanyTypes { get; set; }
+        public virtual List<Item> Items { get; set; }
     }
 }
