@@ -8,6 +8,6 @@ namespace Bills_System_API.Services
         List<Invoice> GetAll();
         Invoice GetById(int id);
         List<Invoice> GetByItemId(int itemId);
-        void Insert(Invoice Invoice);
+        void Insert(List<Invoice> Invoice);
     }
 }

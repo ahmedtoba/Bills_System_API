@@ -26,5 +26,12 @@ namespace Bills_System_API.Controllers
 
             return invoiceRepository.GetByItemId(itemId);
            }
+        [HttpPost]
+        public void PostClient(List<Invoice> invoice)
+        {
+            invoiceRepository.Insert(invoice);
+            
+        }
+
     }
 }

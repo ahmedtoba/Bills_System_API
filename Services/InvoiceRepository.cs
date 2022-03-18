@@ -29,13 +29,13 @@ namespace Bills_System_API.Services
             return invoice;
         }
 
-        public void Insert(Invoice Invoice)
+        public void Insert(List<Invoice> Invoice)
         {
-            if (!db.Invoices.Any())
-                Invoice.Id = 1000;
-            Invoice.Id = db.Invoices.Max(c => c.Id) + 1;
+            foreach (var item in Invoice)
+            {
 
-            db.Invoices.Add(Invoice);
+                db.Invoices.Add(item);
+            }
             db.SaveChanges();
         }
     }
