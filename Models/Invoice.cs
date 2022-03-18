@@ -17,6 +17,9 @@ namespace Bills_System_API.Models
         [Remote(action:"Quantity", controller:"Validation", AdditionalFields ="ItemId", 
             ErrorMessage ="There is not enough quantity in stock")]
         public int Quantity { get; set; }
+        [Required(ErrorMessage ="Selling Price is required")]
+        public double SellingPrice { get; set; }
+        [Required]
         public double Total { get; set; }
         [ForeignKey("Client")]
         public int ClientId { get; set; }
