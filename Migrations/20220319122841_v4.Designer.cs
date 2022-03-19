@@ -4,14 +4,16 @@ using Bills_System_API.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bills_System_API.Migrations
 {
     [DbContext(typeof(BillsContext))]
-    partial class BillsContextModelSnapshot : ModelSnapshot
+    [Migration("20220319122841_v4")]
+    partial class v4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -206,7 +208,7 @@ namespace Bills_System_API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientId")
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Date")
@@ -218,7 +220,7 @@ namespace Bills_System_API.Migrations
                     b.Property<double>("Paid")
                         .HasColumnType("float");
 
-                    b.Property<double>("PercentageDiscount")
+                    b.Property<double>("PrecentageDiscount")
                         .HasColumnType("float");
 
                     b.Property<double>("Total")
@@ -279,7 +281,7 @@ namespace Bills_System_API.Migrations
             modelBuilder.Entity("Bills_System_API.Models.Invoice", b =>
                 {
                     b.HasOne("Bills_System_API.Models.Client", "Client")
-                        .WithMany("Invoices")
+                        .WithMany("Invoice")
                         .HasForeignKey("ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -325,19 +327,15 @@ namespace Bills_System_API.Migrations
             modelBuilder.Entity("Bills_System_API.Models.TotalBill", b =>
                 {
                     b.HasOne("Bills_System_API.Models.Client", "Client")
-                        .WithMany("TotalBills")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("ClientId");
 
                     b.Navigation("Client");
                 });
 
             modelBuilder.Entity("Bills_System_API.Models.Client", b =>
                 {
-                    b.Navigation("Invoices");
-
-                    b.Navigation("TotalBills");
+                    b.Navigation("Invoice");
                 });
 
             modelBuilder.Entity("Bills_System_API.Models.Company", b =>

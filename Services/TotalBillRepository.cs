@@ -18,8 +18,8 @@ namespace Bills_System_API.Services
             }  
           public void Insert(TotalBill Bill)
             {
-            db.TotalBills.Add(Bill);
-            db.SaveChanges();
+                db.TotalBills.Add(Bill);
+                db.SaveChanges();
             }
     }
 }
