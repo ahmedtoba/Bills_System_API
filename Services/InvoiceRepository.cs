@@ -29,12 +29,24 @@ namespace Bills_System_API.Services
             return invoice;
         }
 
-        public void Insert(List<Invoice> Invoice)
+        public void Insert(List<Invoice> Invoices)
         {
-            foreach (var item in Invoice)
+            foreach (var invoice in Invoices)
             {
-
-                db.Invoices.Add(item);
+                var newInvoice = new Invoice()
+                {
+                    Id = invoice.Id,
+                    Date = invoice.Date,
+                    Quantity = invoice.Quantity,
+                    ClientId = invoice.ClientId,
+                    Total = invoice.Total,
+                    ItemId = invoice.ItemId,
+                    SellingPrice = invoice.SellingPrice
+                    
+                };
+                var item = db.Items.FirstOrDefault(i => i.Id == invoice.ItemId);
+                item.RemainingQuantity -= invoice.Quantity;
+                db.Invoices.Add(newInvoice);
             }
             db.SaveChanges();
         }

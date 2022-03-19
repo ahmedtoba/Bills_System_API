@@ -23,15 +23,12 @@ namespace Bills_System_API.Controllers
         [HttpGet("{itemId}")]
         public ActionResult<IEnumerable<Invoice>> GetByItem(int itemId)
         {
-
             return invoiceRepository.GetByItemId(itemId);
-           }
+        }
         [HttpPost]
         public void PostClient(List<Invoice> invoice)
         {
             invoiceRepository.Insert(invoice);
-            
         }
-
     }
 }
