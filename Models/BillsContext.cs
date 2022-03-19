@@ -11,6 +11,7 @@ namespace Bills_System_API.Models
         public virtual DbSet<Unit> Units { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
+        public virtual DbSet<TotalBill> TotalBills { get; set; }
 
         public BillsContext(DbContextOptions<BillsContext> options) : base(options)
         {
