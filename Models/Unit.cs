@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bills_System_API.Models
@@ -10,5 +11,6 @@ namespace Bills_System_API.Models
         [Required(ErrorMessage ="Unit name is required")]
         public string Name { get; set; }
         public string Notes { get; set; }
+        public virtual List<Item> Items { get; set; }
     }
 }

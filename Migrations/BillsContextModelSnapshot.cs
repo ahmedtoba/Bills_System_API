@@ -310,7 +310,7 @@ namespace Bills_System_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Bills_System_API.Models.Unit", "Unit")
-                        .WithMany()
+                        .WithMany("Items")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -355,6 +355,11 @@ namespace Bills_System_API.Migrations
             modelBuilder.Entity("Bills_System_API.Models.Species", b =>
                 {
                     b.Navigation("CompanyTypes");
+                });
+
+            modelBuilder.Entity("Bills_System_API.Models.Unit", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }
