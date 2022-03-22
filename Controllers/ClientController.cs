@@ -82,36 +82,5 @@ namespace Bills_System_API.Controllers
             clientRepository.Insert(client);
             return CreatedAtAction("GetClient", new {Id = client.Id}, client);
         }
-
-        [HttpGet("max")]
-        public ActionResult<int> GetMaximumClientNumber()
-        {
-            return clientRepository.GetAll().Max(c => c.Id) + 1;
-        }
-
-        #region Delete
-        // DELETE: api/Client/5
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> DeleteClient(int id)
-        //{
-        //    var client = await _context.Clients.FindAsync(id);
-        //    if (client == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    _context.Clients.Remove(client);
-        //    await _context.SaveChangesAsync();
-
-        //    return NoContent();
-        //}
-        #endregion
-
-        private bool ClientExists(int id)
-        {
-            var client = clientRepository.GetById(id);
-            
-            return (client == null) ? false : true;
-        }
     }
 }
