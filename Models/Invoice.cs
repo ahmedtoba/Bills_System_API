@@ -7,6 +7,7 @@ namespace Bills_System_API.Models
 {
     public class Invoice
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name ="Bill Number")]
         public int Id { get; set; }
         

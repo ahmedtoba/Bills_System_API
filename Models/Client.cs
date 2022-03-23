@@ -8,6 +8,7 @@ namespace Bills_System_API.Models
     [Index(nameof(Name), IsUnique = true, Name = "UniqueName")]
     public class Client
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Display(Name ="Number")]
         public int Id { get; set; }
         [Required(ErrorMessage ="Item name is required")]

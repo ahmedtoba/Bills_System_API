@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bills_System_API.Migrations
 {
     [DbContext(typeof(BillsContext))]
-    [Migration("20220319155042_v6")]
-    partial class v6
+    [Migration("20220323224121_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,7 @@ namespace Bills_System_API.Migrations
             modelBuilder.Entity("Bills_System_API.Models.Client", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -100,9 +98,7 @@ namespace Bills_System_API.Migrations
             modelBuilder.Entity("Bills_System_API.Models.Invoice", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
@@ -312,7 +308,7 @@ namespace Bills_System_API.Migrations
                         .IsRequired();
 
                     b.HasOne("Bills_System_API.Models.Unit", "Unit")
-                        .WithMany()
+                        .WithMany("Items")
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -357,6 +353,11 @@ namespace Bills_System_API.Migrations
             modelBuilder.Entity("Bills_System_API.Models.Species", b =>
                 {
                     b.Navigation("CompanyTypes");
+                });
+
+            modelBuilder.Entity("Bills_System_API.Models.Unit", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

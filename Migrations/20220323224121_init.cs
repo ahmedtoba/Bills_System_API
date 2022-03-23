@@ -14,9 +14,7 @@ namespace Bills_System_API.Migrations
                     Id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TotalBills = table.Column<double>(type: "float", nullable: false),
-                    PaidUp = table.Column<double>(type: "float", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,6 +60,31 @@ namespace Bills_System_API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Units", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TotalBills",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Total = table.Column<double>(type: "float", nullable: false),
+                    Paid = table.Column<double>(type: "float", nullable: false),
+                    ValueDiscount = table.Column<double>(type: "float", nullable: false),
+                    PercentageDiscount = table.Column<double>(type: "float", nullable: false),
+                    Net = table.Column<double>(type: "float", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TotalBills", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TotalBills_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -137,6 +160,7 @@ namespace Bills_System_API.Migrations
                     Id = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    SellingPrice = table.Column<double>(type: "float", nullable: false),
                     Total = table.Column<double>(type: "float", nullable: false),
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     ItemId = table.Column<int>(type: "int", nullable: false)
@@ -213,6 +237,11 @@ namespace Bills_System_API.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_TotalBills_ClientId",
+                table: "TotalBills",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
                 name: "UniqueName3",
                 table: "Types",
                 column: "Name",
@@ -234,10 +263,13 @@ namespace Bills_System_API.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Clients");
+                name: "TotalBills");
 
             migrationBuilder.DropTable(
                 name: "Items");
+
+            migrationBuilder.DropTable(
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "Companys");
